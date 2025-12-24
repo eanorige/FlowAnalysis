@@ -65,6 +65,39 @@ The configuration file is a JSON file with the following structure:
     -   **weight**: The load or bandwidth of the flow.
     -   **path**: An ordered list of router coordinates ("x,y") representing the path the flow takes.
 
+## Generating Large Test Cases
+
+A Python script is provided to generate large, random NoC configurations for testing performance and scalability.
+
+### Usage
+
+```bash
+python3 generate_large_noc.py [options]
+```
+
+### Options
+
+-   `--width`: Grid width (default: 10)
+-   `--height`: Grid height (default: 10)
+-   `--flows`: Number of flows to generate (default: 1000)
+-   `--broken`: Number of broken links (default: 50)
+-   `--seed`: Random seed for deterministic generation (optional)
+-   `--output`: Output file path (default: `data/large_noc_config.json`)
+
+### Example
+
+Generate a 20x20 grid with 5000 flows, 10 broken links, using a specific seed:
+
+```bash
+python3 generate_large_noc.py --width 20 --height 20 --flows 5000 --broken 10 --seed 123 --output data/my_test.json
+```
+
+Then run the analysis:
+
+```bash
+./build/FlowAnalysis data/my_test.json
+```
+
 ## License
 
 [MIT](LICENSE)
